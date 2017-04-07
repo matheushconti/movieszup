@@ -11,17 +11,75 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo_ic"
+            android:scaleType="centerCrop"
+            />
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:orientation="vertical"
             >
+            <TextView
+                android:id="@+id/txt_titulo_listafilme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/h1"
+                android:text="Os Vingadores"/>
+
+            <TextView
+                android:id="@+id/txt_ano_listafilme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/h3"
+                android:text="2012 - 120min"/>
+
+            <TextView
+                android:id="@+id/txt_desc_listafilme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/h4"
+                android:text="Lorem ipsm dososadas doaskj doas kjdajso fjasdoigja sakdoaskpod aksop dkpaskod kaposdkoapskd paoskd poaskdpoaskd poaskd poaksdp aspodaksp doak so"/>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical"
+            android:padding="5dp">
+            <ImageView
+                android:id="@+id/imv_add_listafilme"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/logo_ic"
+                android:scaleType="fitCenter"
+                android:layout_marginBottom="10dp"/>
 
+            <ImageView
+                android:id="@+id/imv_assistido_listafilme"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/logo_ic"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whiteopac"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"></LinearLayout>
 </LinearLayout>

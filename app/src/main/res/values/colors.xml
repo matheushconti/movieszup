@@ -5,5 +5,7 @@
     <color name="colorAccent">#dbd6d0</color>
     <!--Cores Customizadas-->
     <color name="blackopac">#80000000</color>  <!--Preto Opaco-->
+    <color name="opac">#00000000</color>  <!--Preto Opaco-->
     <color name="white">#FFFFFF</color>  <!--Branco-->
+    <color name="whiteopac">#60FFFFFF</color>  <!--Branco Opaco-->
 </resources>

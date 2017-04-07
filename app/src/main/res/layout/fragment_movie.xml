@@ -11,51 +11,28 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+
         <RelativeLayout
+            android:id="@+id/rl_ultimofilme"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/blackopac"
-            android:gravity="center_vertical">
-            <TextView
-                android:id="@+id/titulo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/titulo"
-                android:textColor="@color/white"
-                android:textSize="@dimen/h1"
-                android:textAlignment="center"
-                />
-            <ImageView
-                android:id="@+id/imv_busca"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/logo_ic"
-                android:layout_toRightOf="@+id/titulo"
-                android:layout_marginLeft="-50dp"
-                />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="180dp"
             android:background="#000">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@string/ultimoadicionado"
-                android:textSize="@dimen/h4"
-                android:padding="15dp"/>
+            <ImageView
+                android:id="@+id/imv_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/logo_ic"
+                android:layout_margin="15dp"/>
             <LinearLayout
-                android:id="@+id/ll_ultimofilme"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="bottom"
                 android:padding="15dp"
                 android:orientation="horizontal">
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="60dp"
                     android:orientation="vertical">
                 <TextView
                     android:id="@+id/txt_titulo_ultimofilme"
@@ -77,15 +54,20 @@
                     />
                 </LinearLayout>
                 <ImageView
+                    android:id="@+id/imv_add_ultimofilme"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/logo_ic"/>
+                <ImageView
                     android:id="@+id/imv_assistido_ultimofilme"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="-45dp"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/logo_ic"/>
             </LinearLayout>
         </RelativeLayout>
         <LinearLayout
-            android:id="@+id/ll_ordenar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -105,17 +87,6 @@
                 android:src="@drawable/logo_ic"/>
 
         </LinearLayout>
-        <br.zup.matheusconti.movieszup.Util.ExpandableHeightGridView
-            android:id="@+id/grid_movies"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="1dp"
-            android:horizontalSpacing="2dp"
-            android:numColumns="2"
-            android:scrollbarStyle="outsideOverlay"
-            android:scrollbars="vertical"
-            android:verticalScrollbarPosition="right"
-            android:verticalSpacing="2dp"/>
 
     </LinearLayout>
 

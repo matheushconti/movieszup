@@ -1,5 +1,6 @@
 package br.zup.matheusconti.movieszup;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +10,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import br.zup.matheusconti.movieszup.Database.Bancodedados;
 import br.zup.matheusconti.movieszup.Fragments.InicioFragment;
-import br.zup.matheusconti.movieszup.util.Util;
+import br.zup.matheusconti.movieszup.Util.Util;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static LinearLayout progress_bg;
     private static ImageView progress_img;
-    private static MainActivity ctx;
+    public static MainActivity ctx;
     private static boolean progressstate = false;
     protected SharedPreferences prefs;
     private static final String PREFS_NAME = "PREFS";
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ctx = this;
+        Bancodedados.initDB();
         prefs = ctx.getSharedPreferences(PREFS_NAME, 0);
 
         progress_bg = (LinearLayout) findViewById(R.id.progress_bg);
@@ -36,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         Util.setFragment(MainActivity.this, new InicioFragment(), true, null);
 
         setProgressState(false);
+    }
+
+    public static Context getCtx(){
+        return ctx;
     }
 
     @Override

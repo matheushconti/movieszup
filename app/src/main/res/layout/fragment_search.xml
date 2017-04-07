@@ -1,0 +1,66 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/fundo"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/blackopac"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
+                <EditText
+                android:id="@+id/titulo"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:hint="@string/procurar"
+                    android:textColorHint="@color/whiteopac"
+                android:textColor="@color/white"
+                    android:singleLine="true"
+                    android:lines="1"
+                    android:background="@color/opac"
+                    android:maxLength="200"
+                android:textSize="@dimen/h3"
+                android:paddingLeft="10dp"
+                />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/whiteopac"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imv_busca"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/logo_ic"
+                />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv_filmes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:context=".MainActivity"
+            tools:listitem="@layout/adapter_filmes" />
+    </LinearLayout>
+
+
+</ScrollView>
