@@ -11,11 +11,13 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Scanner;
 
+import br.zup.matheusconti.movieszup.MainActivity;
+
 public abstract class Bancodedados {
     private static final int VERSION = 1;
     private static DBHelperPrincipal dbhelper;
     private static SQLiteDatabase db;
-    private static Context ctx;
+    private static Context ctx = MainActivity.getCtx();;
 
     public static SQLiteDatabase initDB() {
         if (dbhelper == null)

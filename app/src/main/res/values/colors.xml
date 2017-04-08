@@ -8,4 +8,11 @@
     <color name="opac">#00000000</color>  <!--Preto Opaco-->
     <color name="white">#FFFFFF</color>  <!--Branco-->
     <color name="whiteopac">#60FFFFFF</color>  <!--Branco Opaco-->
+
+    <color name="bluebg">#cfd8dc</color>  <!--Background titulo-->
+    <color name="bluetxt">#546e7a</color>  <!--Texto titulo-->
+    <color name="bg">#fafbfb</color>  <!--background texto-->
+    <color name="txt">#37474f</color>  <!--background texto-->
+    <color name="title">#1c272c</color>  <!--background texto-->
+
 </resources>

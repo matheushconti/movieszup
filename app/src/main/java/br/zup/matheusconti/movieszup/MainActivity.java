@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
+
 //    Metodo para disparar o Carregando
     public static void setProgressState(boolean on) {
         progressstate = on;

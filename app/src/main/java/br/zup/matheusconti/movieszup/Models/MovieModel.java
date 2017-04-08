@@ -28,7 +28,7 @@ public class MovieModel {
     private String Production;
     private String Website;
     private String Assistido = "Não";
-    private String Adicionado = "Sim";
+    private String Adicionado = "Não";
     private boolean Response;
 
     public String getImdbID() {
