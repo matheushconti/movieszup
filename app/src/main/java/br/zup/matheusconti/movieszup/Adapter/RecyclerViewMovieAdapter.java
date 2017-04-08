@@ -78,11 +78,10 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
             lv.imv_assistido_listafilme.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MovieModel movie = Persistencia.getMovie(obj.getImdbID());
-                    if(movie==null){
-                        gravarFilme(obj.getImdbID(),lv.imv_add_listafilme);
-                    }
-                    Util.setAssistido(obj.getImdbID(),lv.imv_assistido_listafilme);
+                if(!Persistencia.hasMovie(obj.getImdbID())) {
+                    gravarFilme(obj.getImdbID(),lv.imv_add_listafilme);
+                }
+                Util.setAssistido(obj.getImdbID(),lv.imv_assistido_listafilme);
                 }
             });
             lv.ll_filme.setOnClickListener(new View.OnClickListener() {

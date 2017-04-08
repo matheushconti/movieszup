@@ -123,7 +123,7 @@ public class InicioFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     MovieModel movie = movies.get(i);
-                    Util.setFragment(getActivity(), new MovieFragment(movie.getImdbID()), false,null);
+                    Util.setFragment(getActivity(), new MovieFragment(movie), false,null);
                 }
             });
         }else{

@@ -244,7 +244,7 @@ public class Persistencia {
 
         ArrayList<String> params = new ArrayList<>();
 
-        String select = "select * from movies where imdbID = "+imdbId;
+        String select = "select * from movies where imdbID = '"+imdbId+"'";
 
         String assistido = "Não";
         try {
@@ -257,9 +257,9 @@ public class Persistencia {
                         assistido = "Sim";
                     }
                     ContentValues cv = new ContentValues();
-                    cv.put("Assistido",assistido);
+                    cv.put("Assistido","'"+assistido+"'");
 
-                    db.update("movies",cv,"imdbID="+imdbId,null);
+                    db.update("movies",cv,"imdbID='"+imdbId+"'",null);
                 }
                 c.close();
             }

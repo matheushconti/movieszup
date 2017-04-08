@@ -149,7 +149,9 @@ public class MovieFragment extends Fragment {
         imv_assistido_filme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Util.setAdicionado(movieinfo,imv_add_filme);
+                if(!Persistencia.hasMovie(movieinfo.getImdbID())) {
+                    Util.setAdicionado(movieinfo, imv_add_filme);
+                }
                 Util.setAssistido(movieinfo.getImdbID(),imv_assistido_filme);
             }
         });
