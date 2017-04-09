@@ -17,11 +17,11 @@ public abstract class Bancodedados {
     private static final int VERSION = 1;
     private static DBHelperPrincipal dbhelper;
     private static SQLiteDatabase db;
-    private static Context ctx = MainActivity.getCtx();;
+    private static Context ctx = MainActivity.getCtx();
 
     public static SQLiteDatabase initDB() {
         if (dbhelper == null)
-            dbhelper = new DBHelperPrincipal(ctx, "movieszup", VERSION);
+            dbhelper = new DBHelperPrincipal(MainActivity.getCtx(), "movieszup", VERSION);
 
         if (db == null) {
             db = dbhelper.getReadableDatabase();

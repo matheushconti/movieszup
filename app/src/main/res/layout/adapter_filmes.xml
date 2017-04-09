@@ -49,13 +49,14 @@
                 android:textColor="@color/white"
                 android:layout_marginTop="5dp"
                 android:textSize="@dimen/h4"
-                android:text="Lorem ipsm dososadas doaskj doas kjdajso fjasdoigja sakdoaskpod aksop dkpaskod kaposdkoapskd paoskd poaskdpoaskd poaskd poaksdp aspodaksp doak so"/>
+                android:text="..."/>
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:orientation="vertical"
             android:padding="5dp">
@@ -65,6 +66,8 @@
                 android:layout_height="40dp"
                 android:src="@drawable/list"
                 android:scaleType="fitCenter"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:layout_marginBottom="10dp"/>
 
             <ImageView
@@ -80,7 +83,5 @@
         android:layout_height="1dp"
         android:background="@color/whiteopac"
         android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"></LinearLayout>
+        android:layout_marginLeft="5dp"/>
 </LinearLayout>

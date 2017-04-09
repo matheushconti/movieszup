@@ -159,7 +159,7 @@ public class Util {
         }
     }
 
-    public static void showDialog(String msg, String title, Context ctx) {
+    public static void showDialog(String title, String msg, Context ctx) {
         // custom dialog
         final Dialog dialog = new Dialog(ctx, R.style.customDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //before
@@ -192,39 +192,39 @@ public class Util {
     }
 
     public static void imgLoader(String url, final ImageView img){
+        if(!url.equals("N/A")) {
+            ImageLoader imageLoader = ImageLoader.getInstance();
+            if (!imageLoader.isInited()) {
+                ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(MainActivity.getCtx())
+                        .memoryCache(new WeakMemoryCache())
+                        .tasksProcessingOrder(QueueProcessingType.LIFO)
+                        .threadPoolSize(13)
+                        .build();
+                imageLoader.init(config);
+            }
+            imageLoader.displayImage(url, img, Util.getUml(), new ImageLoadingListener() {
+                @Override
+                public void onLoadingStarted(String imageUri, View view) {
+    //                img.setVisibility(View.GONE);
+                }
 
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(MainActivity.getCtx())
-                .memoryCache(new WeakMemoryCache())
-                .denyCacheImageMultipleSizesInMemory().threadPoolSize(5)
-                .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .threadPoolSize(10)
-                .build();
-        if(!imageLoader.isInited()) {
-            imageLoader.init(config);
+                @Override
+                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                }
+
+                @Override
+                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                    img.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onLoadingCancelled(String imageUri, View view) {
+                }
+            }, new ImageLoadingProgressListener() {
+                @Override
+                public void onProgressUpdate(String imageUri, View view, int current, int total) {
+                }
+            });
         }
-        imageLoader.displayImage(url, img, Util.getUml(), new ImageLoadingListener() {
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-//                img.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                img.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-            }
-        }, new ImageLoadingProgressListener() {
-            @Override
-            public void onProgressUpdate(String imageUri, View view, int current, int total) {
-            }
-        });
     }
 }

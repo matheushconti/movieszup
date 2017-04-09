@@ -27,7 +27,7 @@
                 android:id="@+id/txt_search"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:hint="@string/procurar"
+                android:hint="Procurar..."
                     android:textColorHint="@color/whiteopac"
                 android:textColor="@color/white"
                     android:singleLine="true"
@@ -37,6 +37,7 @@
                     android:maxLength="200"
                 android:textSize="@dimen/h3"
                 android:paddingLeft="10dp"
+                    android:imeOptions="actionDone"
                 />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -75,14 +76,25 @@
                 android:textColor="#888"
                 android:paddingRight="80dp"/>
         </LinearLayout>
-        <android.support.v7.widget.RecyclerView
+
+        <ListView
             android:id="@+id/rcv_filmes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            tools:context=".MainActivity"
             android:visibility="gone"
-            tools:listitem="@layout/adapter_filmes" />
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:clickable="false"
+            >
+            </ListView>
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/rcv_filmes"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:layoutManager="android.support.v7.widget.LinearLayoutManager"-->
+            <!--tools:context=".MainActivity"-->
+            <!--android:visibility="gone"-->
+            <!--tools:listitem="@layout/adapter_filmes" />-->
     </LinearLayout>
 
 

@@ -14,5 +14,6 @@
     <color name="bg">#fafbfb</color>  <!--background texto-->
     <color name="txt">#37474f</color>  <!--background texto-->
     <color name="title">#1c272c</color>  <!--background texto-->
+    <color name="bluebottom">#0077CC</color>  <!--background texto-->
 
 </resources>

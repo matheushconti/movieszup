@@ -1,8 +1,4 @@
 <resources>
     <string name="app_name">Movies Zup</string>
 
-
-    <string name="titulo">Meus Filmes</string>
-    <string name="ultimoadicionado">Último Adicionado</string>
-    <string name="procurar">Procurar...</string>
 </resources>

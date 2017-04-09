@@ -257,9 +257,11 @@ public class Persistencia {
                         assistido = "Sim";
                     }
                     ContentValues cv = new ContentValues();
-                    cv.put("Assistido","'"+assistido+"'");
+                    cv.put("Assistido",assistido);
 
-                    db.update("movies",cv,"imdbID='"+imdbId+"'",null);
+                    int count = db.update("movies",cv,"imdbID='"+imdbId+"'",null);
+                    db.setTransactionSuccessful();
+                    Log.e("Teste",count+"");
                 }
                 c.close();
             }

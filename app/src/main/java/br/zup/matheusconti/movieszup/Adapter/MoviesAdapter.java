@@ -1,40 +1,31 @@
 package br.zup.matheusconti.movieszup.Adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import br.zup.matheusconti.movieszup.Models.MovieModel;
 import br.zup.matheusconti.movieszup.R;
-import br.zup.matheusconti.movieszup.Retrofit.Interface;
-import br.zup.matheusconti.movieszup.Retrofit.RetrofitAPI;
 import br.zup.matheusconti.movieszup.Util.Util;
 
 public class MoviesAdapter extends BaseAdapter {
-    private Context ctx;
-    public ArrayList<MovieModel> movies;
-    public MovieModel obj;
+    private ArrayList<MovieModel> movies;
+    private LayoutInflater mInflater;
 
     public MoviesAdapter(Context ctx, ArrayList<MovieModel> movies) {
-        this.ctx = ctx;
+        mInflater = LayoutInflater.from(ctx);
         this.movies = movies;
+    }
+    private static class ViewHolder {
+        private ImageView imv_movie_adapter, imv_assistido_adapter;
+        private TextView txt_titulo_adapter;
     }
 
     @Override
@@ -64,21 +55,35 @@ public class MoviesAdapter extends BaseAdapter {
 
         try {
             if (convertView == null) {
-                convertView = ((LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.adapter_movie, parent, false);
+                convertView = mInflater.inflate(R.layout.adapter_movie, null);
 
                 holder = new ViewHolder();
                 assert convertView != null;
 
                 holder.imv_movie_adapter = (ImageView) convertView.findViewById(R.id.imv_movie_adapter);
-
+                holder.imv_assistido_adapter = (ImageView) convertView.findViewById(R.id.imv_assistido_adapter);
+                holder.txt_titulo_adapter = (TextView) convertView.findViewById(R.id.txt_titulo_adapter);
+                holder.imv_assistido_adapter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Util.setAssistido((String) view.getTag(),(ImageView)view);
+                    }
+                });
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
+            final MovieModel obj;
             obj = movies.get(position);
 
             Util.imgLoader(obj.getPoster(),holder.imv_movie_adapter);
+            holder.txt_titulo_adapter.setText(obj.getTitle());
+            if(obj.getAssistido().equals("Sim")){
+                holder.imv_assistido_adapter.setImageResource(R.drawable.success);
+            }
+            holder.imv_assistido_adapter.setTag(obj.getImdbID());
+
 
         } catch (Exception e) {
             Log.e("MoviesZup", "Erro getView", e);
@@ -86,8 +91,5 @@ public class MoviesAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private static class ViewHolder {
-        private ImageView imv_movie_adapter;
-        private LinearLayout ll_empty_movie;
-    }
+
 }

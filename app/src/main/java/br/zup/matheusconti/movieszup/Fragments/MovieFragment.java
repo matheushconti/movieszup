@@ -1,7 +1,6 @@
 package br.zup.matheusconti.movieszup.Fragments;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,10 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
 
 import java.util.HashMap;
 
@@ -30,18 +25,11 @@ import retrofit2.Response;
 
 public class MovieFragment extends Fragment {
 
-    public MovieFragment() {
-        // Required empty public constructor
-    }
-
     public String imdbid = "";
     public MovieFragment(String imdbid) {
         this.imdbid = imdbid;
     }
-    public MovieModel movie;
-    public MovieFragment(MovieModel movie) {
-        this.movie = movie;
-    }
+
 
     public ImageView imv_back,imv_filme,imv_assistido_filme,imv_add_filme;
     public TextView txt_titulo_filme,txt_year_filme,txt_genre_filme,txt_country_filme,txt_plot,txt_director,
@@ -57,6 +45,12 @@ public class MovieFragment extends Fragment {
         ctx = getContext();
         ws = new RetrofitAPI().create(Interface.class);
         imv_back = (ImageView) v.findViewById(R.id.imv_back);
+        imv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().popBackStackImmediate();
+            }
+        });
         imv_filme = (ImageView) v.findViewById(R.id.imv_filme);
         imv_add_filme = (ImageView) v.findViewById(R.id.imv_add_filme);
         imv_assistido_filme = (ImageView) v.findViewById(R.id.imv_assistido_filme);
@@ -79,9 +73,11 @@ public class MovieFragment extends Fragment {
 
 
 
-        if(movie == null){
+        if(Persistencia.hasMovie(imdbid)){
+            loadInfos(Persistencia.getMovie(imdbid));
+        }else {
             MainActivity.setProgressState(true);
-            HashMap<String, String> params = new HashMap<String, String>();
+            HashMap<String, String> params = new HashMap<>();
             params.put("i", imdbid);
             params.put("plot", "full");
             ws.movie(params).enqueue(new Callback<MovieModel>() {
@@ -94,22 +90,22 @@ public class MovieFragment extends Fragment {
                             if (body.isResponse()) {
                                 loadInfos(body);
                             } else {
-                                Util.showDialog("Erro!","Não foi possivel encontrar o filme, verifique sua conexão com a internet!", ctx);
+                                Util.showDialog("Erro!", "Não foi possivel encontrar o filme, verifique sua conexão com a internet!", ctx);
                             }
                         } else {
+                            Util.showDialog("Erro!", "Ocorreu um problema, verifique sua conexão com a internet!", ctx);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
+
                 @Override
                 public void onFailure(Call<MovieModel> call, Throwable t) {
                     MainActivity.setProgressState(false);
                     t.printStackTrace();
                 }
             });
-        }else{
-            loadInfos(movie);
         }
 
         return v;
@@ -140,12 +136,7 @@ public class MovieFragment extends Fragment {
         txt_website.setText(movieinfo.getWebsite());
         txt_dvd.setText(movieinfo.getDVD());
 
-        imv_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getFragmentManager().popBackStackImmediate();
-            }
-        });
+
         imv_assistido_filme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,6 +150,9 @@ public class MovieFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Util.setAdicionado(movieinfo,imv_add_filme);
+                if(!Persistencia.hasMovie(imdbid)) {
+                    imv_assistido_filme.setImageResource(R.drawable.success_white);
+                }
             }
         });
     }
