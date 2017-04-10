@@ -101,19 +101,27 @@ public class Persistencia {
         return movie;
     }
    
-    public static ArrayList<MovieModel> showMovies(CharSequence search) {
+    public static ArrayList<MovieModel> showMovies(String filtro,String order ) {
         SQLiteDatabase db = Bancodedados.getDB(MainActivity.getCtx());
         db.beginTransaction();
 
         ArrayList<String> params = new ArrayList<>();
 
         String select = "select * from movies";
-        if(search != null && !search.toString().isEmpty()) {
-            select += " where name glob ?";
-            String glob = Util.toGlob(search.toString());
-            params.add(glob);
+
+        if(filtro != null) {
+            if (filtro.equals("assistidos")) {
+                select += " where Assistido = 'Sim'";
+            } else if (filtro.equals("naoassistidos")) {
+                select += " where Assistido = 'Não'";
+            }
         }
-        select += " order by dataInsert desc";
+
+        if(order == null){
+            order = "dataInsert desc";
+        }
+        select += " order by "+order;
+
 
         String[] arr_params = new String[params.size()];
         arr_params = params.toArray(arr_params);

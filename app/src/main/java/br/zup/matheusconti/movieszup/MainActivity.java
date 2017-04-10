@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Bancodedados.initDB();
         progress_bg = (LinearLayout) findViewById(R.id.progress_bg);
 
-        Util.setFragment(ctx, new InicioFragment(), false, null);
+        Util.setFragment(ctx, new InicioFragment(), true, null);
 
         setProgressState(false);
     }

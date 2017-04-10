@@ -53,6 +53,8 @@ public class MoviesAdapter extends BaseAdapter {
 
         final ViewHolder holder;
 
+        final MovieModel obj;
+        obj = movies.get(position);
         try {
             if (convertView == null) {
                 convertView = mInflater.inflate(R.layout.adapter_movie, null);
@@ -69,19 +71,18 @@ public class MoviesAdapter extends BaseAdapter {
                         Util.setAssistido((String) view.getTag(),(ImageView)view);
                     }
                 });
+                if(obj.getAssistido().equals("Sim")){
+                    holder.imv_assistido_adapter.setImageResource(R.drawable.success);
+                }
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            final MovieModel obj;
-            obj = movies.get(position);
 
             Util.imgLoader(obj.getPoster(),holder.imv_movie_adapter);
             holder.txt_titulo_adapter.setText(obj.getTitle());
-            if(obj.getAssistido().equals("Sim")){
-                holder.imv_assistido_adapter.setImageResource(R.drawable.success);
-            }
+
             holder.imv_assistido_adapter.setTag(obj.getImdbID());
 
 
